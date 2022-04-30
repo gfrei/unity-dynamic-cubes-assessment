@@ -1,0 +1,126 @@
+
+# =============== #
+# Unity generated #
+# =============== #
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild
+**/[Ll]ibrary/
+**/sysinfo.txt
+**/Assets/AssetStoreTools*
+
+
+# =========== #
+# Build File #
+# =========== #
+**/*.apk
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+**/*.userprefs
+**/[Ee]xported[Oo]bj/
+**/*.csproj
+**/*.unityproj
+**/*.sln
+**/*.suo
+**/*.tmp
+**/*.user
+**/*.pidb
+**/*.booproj
+**/*.svd
+**/VSCode
+**/VSCode.meta
+
+# ========================================== #
+# Other stuff to be excluded from repository #
+# ========================================== #
+**/Assets/StreamingAssets/Animals.db*
+**/Assets/StreamingAssets/AssetBundles*
+**/AssetBundles
+**/Assets/TK2DROOT/
+**/Assets/TK2DROOT.meta
+**/Assets/LunarConsole/
+**/Assets/LunarConsole.meta
+**/Assets/Plugins/Android/LunarConsole
+**/Assets/Plugins/Android/LunarConsole.meta
+**/Assets/Plugins/Android.meta
+**/Assets/Doxygen
+**/Assets/Plugins/Doxygen
+**/Assets/Plugins/Doxygen.meta
+**/Assets/AssetBundleSample
+**/Builds
+**/Thumbs.db
+**/Thumbs.db.meta
+
+# ================= #
+# Text editor files #
+# ================= #
+**/*~
+**/.vscode/
+
+**/IOSSampleProject*/
+src/Assets/Plugins/AdNetworkConnections/AdNetworks/AdNetworksWrapper/AdColony/Scripts/AdColonyRuntimeConfig\.cs
+vr-prot-arena/.vs/vr-prot-arena/v16/Server/sqlite3/db.lock
+vr-prot-arena/.vs/vr-prot-arena/v16/Server/sqlite3/storage.ide
+vr-prot-arena/.vs/vr-prot-arena/v16/Server/sqlite3/storage.ide-shm
+vr-prot-arena/.vs/vr-prot-arena/v16/Server/sqlite3/storage.ide-wal
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide-shm
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide-wal
+vr-prot-arena/Assets/Firebase/Plugins/link.xml
+vr-prot-arena/Assets/Firebase/Plugins/link.xml.meta
+vr-prot-arena/Assets/Firebase/Plugins/link.xml_DISABLED
+vr-prot-arena/Assets/Firebase/Plugins/link.xml_DISABLED.meta
+vr-prot-arena/Assets/Photon.meta
+vr-prot-arena/Assets/Resources/Player/PlayerBaseOculus.prefab
+vr-prot-arena/ProjectSettings/QualitySettings.asset
+vr-prot-arena/Assets/Textures/UI/UI Atlas.spriteatlas
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide-shm
+vr-prot-arena/.vs/vr-prot-arena/v15/Server/sqlite3/storage.ide-wal
+vr-prot-arena/Assets/Firebase/Plugins/link.xml_DISABLED
+vr-prot-arena/Assets/Firebase/Plugins/link.xml_DISABLED.meta
+vr-prot-arena/Assets/Resources/Player/PlayerBaseOculus.prefab
+vr-prot-arena/ProjectSettings/QualitySettings.asset
+vr-prot-arena/Assets/Textures/UI/UI Atlas.spriteatlas
+vr-prot-arena/Recordings/
+Logs/AssetImportWorker0-prev.log
+Logs/AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Logs/shadercompiler-UnityShaderCompiler.exe1.log
+Logs/shadercompiler-UnityShaderCompiler.exe10.log
+Logs/shadercompiler-UnityShaderCompiler.exe11.log
+Logs/shadercompiler-UnityShaderCompiler.exe12.log
+Logs/shadercompiler-UnityShaderCompiler.exe13.log
+Logs/shadercompiler-UnityShaderCompiler.exe14.log
+Logs/shadercompiler-UnityShaderCompiler.exe15.log
+Logs/shadercompiler-UnityShaderCompiler.exe16.log
+Logs/shadercompiler-UnityShaderCompiler.exe17.log
+Logs/shadercompiler-UnityShaderCompiler.exe18.log
+Logs/shadercompiler-UnityShaderCompiler.exe19.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
+Logs/shadercompiler-UnityShaderCompiler.exe3.log
+Logs/shadercompiler-UnityShaderCompiler.exe4.log
+Logs/shadercompiler-UnityShaderCompiler.exe5.log
+Logs/shadercompiler-UnityShaderCompiler.exe6.log
+Logs/shadercompiler-UnityShaderCompiler.exe7.log
+Logs/shadercompiler-UnityShaderCompiler.exe8.log
+Logs/shadercompiler-UnityShaderCompiler.exe9.log
+UserSettings/EditorUserSettings.asset
+Logs/AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Logs/shadercompiler-UnityShaderCompiler.exe1.log
+Logs/shadercompiler-UnityShaderCompiler.exe10.log
+Logs/shadercompiler-UnityShaderCompiler.exe11.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
+Logs/shadercompiler-UnityShaderCompiler.exe3.log
+Logs/shadercompiler-UnityShaderCompiler.exe4.log
+Logs/shadercompiler-UnityShaderCompiler.exe5.log
+Logs/shadercompiler-UnityShaderCompiler.exe6.log
+Logs/shadercompiler-UnityShaderCompiler.exe7.log
+Logs/shadercompiler-UnityShaderCompiler.exe8.log
+Logs/shadercompiler-UnityShaderCompiler.exe9.log
+UserSettings/EditorUserSettings.asset
