@@ -2,13 +2,13 @@ Assessment Definition
 We would like you to create in a sphere-shaped area, at-least 1500 cubes spawning dynamically at runtime.
 Details
 1.  Each cube should have:
-    a.  Random position within the sphere
-    b.  random colour
-    c.  random size
-    d.  random lifetime.
+    .a.  Random position within the sphere
+    .b.  random colour
+    .c.  random size
+    .d.  random lifetime.
     e.  rotate in sync with a parent and also locally (but with different speeds).
     f.  fade away when the life reaches the end.
-    g.  Expired cubes should be replaced by new ones.
+    .g.  Expired cubes should be replaced by new ones.
 2. Initialization speed of cubes will be considered
 3. Clean architecture will be considered
 4. Extra points
