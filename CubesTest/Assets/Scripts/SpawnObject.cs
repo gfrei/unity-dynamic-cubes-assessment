@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnObject : MonoBehaviour
 {
+    [Header("ModelReferences")]
     [SerializeField] private Renderer modelRenderer;
     [SerializeField] private Transform modelTransform;
     [Header("Lifetime")]
@@ -26,30 +27,34 @@ public class SpawnObject : MonoBehaviour
     private Color materialColor;
     private Transform mytransform;
     private Vector3 rotationPerFrame;
-
-    private void Start()
-    {
-        modelTransform.transform.localScale = GetRandomSize();
-
-        materialColor = GetRandomColor();
-        modelRenderer.material.color = materialColor;
-
-        rotationPerFrame = GetRandomRotation();
-
-        mytransform = transform;
-
-        float lifetime = Random.Range(lifetimeRange.x, lifetimeRange.y);
-        StartCoroutine(FinishLifecycleCoroutine(lifetime));
-    }
+    private List<Transform> childObjects;
 
     private void Update()
     {
         mytransform.Rotate(rotationPerFrame);
     }
 
-    public void SetAreaController(SphereAreaController controller)
+    public void Init(SphereAreaController controller)
     {
         this.controller = controller;
+        mytransform = transform;
+        childObjects = new List<Transform>();
+
+        modelTransform.localScale = GetRandomSize();
+
+        materialColor = GetRandomColor();
+        modelRenderer.material.color = materialColor;
+
+        rotationPerFrame = GetRandomRotation();
+
+        float lifetime = Random.Range(lifetimeRange.x, lifetimeRange.y);
+        StartCoroutine(LifecycleCoroutine(lifetime));
+    }
+
+    public void AddChild(Transform childTransform)
+    {
+        childObjects.Add(childTransform);
+        childTransform.SetParent(mytransform);
     }
 
     private Color GetRandomColor()
@@ -79,7 +84,7 @@ public class SpawnObject : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    private IEnumerator FinishLifecycleCoroutine(float time)
+    private IEnumerator LifecycleCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
 
@@ -93,7 +98,19 @@ public class SpawnObject : MonoBehaviour
             yield return null;
         }
 
+        RemoveChildren();
         controller.RemoveSpawnObject(this);
         Destroy(gameObject);
+    }
+
+    private void RemoveChildren()
+    {
+        foreach(Transform child in childObjects)
+        {
+            if (child != null)
+            {
+                child.SetParent(null);
+            }
+        }
     }
 }

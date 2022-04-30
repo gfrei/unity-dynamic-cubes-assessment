@@ -6,6 +6,7 @@ public class SphereAreaController : MonoBehaviour
 {
     [SerializeField] private float sphereRadius;
     [SerializeField] private int objectCount;
+    [SerializeField] private float objectAsChildChance;
     [SerializeField] private SpawnObject spawnObject;
 
     private List<SpawnObject> objectsList;
@@ -48,8 +49,16 @@ public class SphereAreaController : MonoBehaviour
     private void SpawnNewObject()
     {
         SpawnObject instance = Instantiate(spawnObject, GetRandomPosition(), Quaternion.identity);
+        instance.Init(this);
+
+        if (Random.Range(0, 1f) <= objectAsChildChance && objectsList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, objectsList.Count);
+            SpawnObject parent = objectsList[randomIndex];
+            parent.AddChild(instance.gameObject.transform);
+        }
+
         objectsList.Add(instance);
-        instance.SetAreaController(this);
     }
 
     public void RemoveSpawnObject(SpawnObject instance)
