@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SphereAreaController : MonoBehaviour
 {
+    [SerializeField] private PoolManager poolManager;
     [SerializeField] private float sphereRadius;
     [SerializeField] private int objectCount;
     [SerializeField] private float objectAsChildChance;
@@ -48,7 +49,7 @@ public class SphereAreaController : MonoBehaviour
 
     private void SpawnNewObject()
     {
-        SpawnObject instance = Instantiate(spawnObject, GetRandomPosition(), Quaternion.identity);
+        SpawnObject instance = poolManager.InstantiateSpawnObject(GetRandomPosition());
         instance.Init(this);
 
         if (Random.Range(0, 1f) <= objectAsChildChance && objectsList.Count > 0)
@@ -64,6 +65,7 @@ public class SphereAreaController : MonoBehaviour
     public void RemoveSpawnObject(SpawnObject instance)
     {
         objectsList.Remove(instance);
+        poolManager.Remove(instance);
         SpawnNewObject();
     }
 

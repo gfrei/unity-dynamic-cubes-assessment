@@ -63,7 +63,7 @@ public class SpawnObject : MonoBehaviour
         float g = Random.Range(gColorRange.x, gColorRange.y);
         float b = Random.Range(bColorRange.x, bColorRange.y);
 
-        return new Color(r,g,b);
+        return new Color(r, g, b, 1);
     }
 
     private Vector3 GetRandomSize()
@@ -100,7 +100,6 @@ public class SpawnObject : MonoBehaviour
 
         RemoveChildren();
         controller.RemoveSpawnObject(this);
-        Destroy(gameObject);
     }
 
     private void RemoveChildren()
