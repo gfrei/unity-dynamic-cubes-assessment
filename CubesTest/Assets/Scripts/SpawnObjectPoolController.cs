@@ -15,7 +15,7 @@ namespace RotatingObjects
             this.spawnConfig = spawnConfig;
         }
 
-        public SpawnObject InstantiateSpawnObject(Vector3 position)
+        public SpawnObject InstantiateSpawnObject(Vector3 position, Transform parent)
         {
             SpawnObject instance;
 
@@ -25,10 +25,11 @@ namespace RotatingObjects
                 pool.Remove(instance);
                 instance.gameObject.SetActive(true);
                 instance.transform.position = position;
+                instance.transform.SetParent(parent);
             }
             else
             {
-                instance = Instantiate(spawnConfig.spawnObject, position, Quaternion.identity);
+                instance = Instantiate(spawnConfig.spawnObject, position, Quaternion.identity, parent);
             }
 
             return instance;

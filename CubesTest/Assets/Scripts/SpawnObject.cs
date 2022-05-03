@@ -12,28 +12,30 @@ namespace RotatingObjects
         private SphereAreaController controller;
         private Color materialColor;
         private Transform mytransform;
-        private Vector3 rotationPerFrame;
+        private Transform defaultParent;
+        private Vector3 rotationPerUpdate;
         private List<Transform> childObjects;
 
         private void FixedUpdate()
         {
-            mytransform.Rotate(rotationPerFrame);
+            mytransform.Rotate(rotationPerUpdate);
         }
 
-        public void Init(SphereAreaController controller, SpawnConfig spawnConfig)
+        public void Init(SphereAreaController controller, SpawnConfig spawnConfig, Transform defaultParent)
         {
             this.controller = controller;
             this.spawnConfig = spawnConfig;
+            this.defaultParent = defaultParent;
 
             mytransform = transform;
             childObjects = new List<Transform>();
 
-            modelTransform.localScale = GetRandomSize();
-
             materialColor = GetRandomColor();
             modelRenderer.material.color = materialColor;
 
-            rotationPerFrame = GetRandomRotation();
+            modelTransform.localScale = GetRandomSize();
+
+            rotationPerUpdate = GetRandomRotation();
 
             float lifetime = Random.Range(spawnConfig.lifetimeRange.x, spawnConfig.lifetimeRange.y);
             StartCoroutine(LifecycleCoroutine(lifetime));
@@ -72,9 +74,9 @@ namespace RotatingObjects
             return new Vector3(x, y, z);
         }
 
-        private IEnumerator LifecycleCoroutine(float time)
+        private IEnumerator LifecycleCoroutine(float lifetime)
         {
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(lifetime);
 
             Color targetColor = new Color(materialColor.r, materialColor.g, materialColor.b, 0f);
 
@@ -96,7 +98,7 @@ namespace RotatingObjects
             {
                 if (child != null)
                 {
-                    child.SetParent(null);
+                    child.SetParent(defaultParent);
                 }
             }
         }

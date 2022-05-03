@@ -6,52 +6,36 @@ namespace RotatingObjects
 {
     public class SphereAreaController : MonoBehaviour
     {
-        [SerializeField] private SpawnObjectPoolController poolManager;
+        [SerializeField] private SpawnObjectPoolController poolController;
         [SerializeField] private SpawnConfig spawnConfig;
 
         private List<SpawnObject> objectsList;
+        private Transform myTransform;
 
 
         private void Start()
         {
             objectsList = new List<SpawnObject>();
+            myTransform = transform;
 
-            poolManager.Init(spawnConfig);
+            poolController.Init(spawnConfig);
 
-            StartCoroutine(SpawnCoroutine());
+            for (int i = 0; i < spawnConfig.objectCount; i++)
+            {
+                SpawnNewObject();
+            }
         }
 
         void OnDrawGizmosSelected()
         {
-            Gizmos.color = new Color(1, 1, 1, 0.2f);
+            Gizmos.color = new Color(1, 1, 1, 0.3f);
             Gizmos.DrawSphere(Vector3.zero, spawnConfig.sphereRadius);
-        }
-
-        private IEnumerator SpawnCoroutine()
-        {
-            float frametime = Time.unscaledDeltaTime;
-            int i = 0;
-            yield return new WaitForEndOfFrame();
-            while (i < spawnConfig.objectCount)
-            {
-                SpawnNewObject();
-                i++;
-
-                frametime += Time.unscaledDeltaTime;
-
-                // if (frametime > 0.016f)
-                // {
-                //     Debug.Log(">> frametime wait for frame: " + frametime);
-                //     frametime = 0;
-                //     yield return new WaitForEndOfFrame();
-                // }
-            }
         }
 
         private void SpawnNewObject()
         {
-            SpawnObject instance = poolManager.InstantiateSpawnObject(GetRandomPosition());
-            instance.Init(this, spawnConfig);
+            SpawnObject instance = poolController.InstantiateSpawnObject(GetRandomPosition(), myTransform);
+            instance.Init(this, spawnConfig, myTransform);
 
             if (Random.Range(0, 1f) <= spawnConfig.objectAsChildChance && objectsList.Count > 0)
             {
@@ -66,7 +50,7 @@ namespace RotatingObjects
         public void RemoveSpawnObject(SpawnObject instance)
         {
             objectsList.Remove(instance);
-            poolManager.Remove(instance);
+            poolController.Remove(instance);
             SpawnNewObject();
         }
 
@@ -81,14 +65,13 @@ namespace RotatingObjects
 
         private Vector3 SphericalToCartesian(float radius, float polar, float elevation)
         {
-            Vector3 outCart = new Vector3();
-
             float a = radius * Mathf.Cos(elevation);
-            outCart.x = a * Mathf.Cos(polar);
-            outCart.y = radius * Mathf.Sin(elevation);
-            outCart.z = a * Mathf.Sin(polar);
 
-            return outCart;
+            float x = a * Mathf.Cos(polar);
+            float y = radius * Mathf.Sin(elevation);
+            float z = a * Mathf.Sin(polar);
+
+            return new Vector3(x, y, z);
         }
     }
 }
