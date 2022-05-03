@@ -29,7 +29,7 @@ public class SpawnObject : MonoBehaviour
     private Vector3 rotationPerFrame;
     private List<Transform> childObjects;
 
-    private void Update()
+    private void FixedUpdate()
     {
         mytransform.Rotate(rotationPerFrame);
     }
