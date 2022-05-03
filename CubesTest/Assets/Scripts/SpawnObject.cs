@@ -6,25 +6,9 @@ namespace RotatingObjects
 {
     public class SpawnObject : MonoBehaviour
     {
-        [Header("ModelReferences")]
         [SerializeField] private Renderer modelRenderer;
         [SerializeField] private Transform modelTransform;
-        [Header("Lifetime")]
-        [SerializeField] private Vector2 lifetimeRange;
-        [SerializeField] private float fadeDuration;
-        [Header("Size")]
-        [SerializeField] private Vector2 xSizeRange;
-        [SerializeField] private Vector2 ySizeRange;
-        [SerializeField] private Vector2 zSizeRange;
-        [Header("Rotation")]
-        [SerializeField] private Vector2 xRotationSpeedRange;
-        [SerializeField] private Vector2 yRotationSpeedRange;
-        [SerializeField] private Vector2 zRotationSpeedRange;
-        [Header("Colors")]
-        [SerializeField] private Vector2 rColorRange;
-        [SerializeField] private Vector2 gColorRange;
-        [SerializeField] private Vector2 bColorRange;
-
+        private SpawnConfig spawnConfig;
         private SphereAreaController controller;
         private Color materialColor;
         private Transform mytransform;
@@ -36,9 +20,11 @@ namespace RotatingObjects
             mytransform.Rotate(rotationPerFrame);
         }
 
-        public void Init(SphereAreaController controller)
+        public void Init(SphereAreaController controller, SpawnConfig spawnConfig)
         {
             this.controller = controller;
+            this.spawnConfig = spawnConfig;
+
             mytransform = transform;
             childObjects = new List<Transform>();
 
@@ -49,7 +35,7 @@ namespace RotatingObjects
 
             rotationPerFrame = GetRandomRotation();
 
-            float lifetime = Random.Range(lifetimeRange.x, lifetimeRange.y);
+            float lifetime = Random.Range(spawnConfig.lifetimeRange.x, spawnConfig.lifetimeRange.y);
             StartCoroutine(LifecycleCoroutine(lifetime));
         }
 
@@ -61,27 +47,27 @@ namespace RotatingObjects
 
         private Color GetRandomColor()
         {
-            float r = Random.Range(rColorRange.x, rColorRange.y);
-            float g = Random.Range(gColorRange.x, gColorRange.y);
-            float b = Random.Range(bColorRange.x, bColorRange.y);
+            float r = Random.Range(spawnConfig.rColorRange.x, spawnConfig.rColorRange.y);
+            float g = Random.Range(spawnConfig.gColorRange.x, spawnConfig.gColorRange.y);
+            float b = Random.Range(spawnConfig.bColorRange.x, spawnConfig.bColorRange.y);
 
             return new Color(r, g, b, 1);
         }
 
         private Vector3 GetRandomSize()
         {
-            float x = Random.Range(xSizeRange.x, xSizeRange.y);
-            float y = Random.Range(ySizeRange.x, ySizeRange.y);
-            float z = Random.Range(zSizeRange.x, zSizeRange.y);
+            float x = Random.Range(spawnConfig.xSizeRange.x, spawnConfig.xSizeRange.y);
+            float y = Random.Range(spawnConfig.ySizeRange.x, spawnConfig.ySizeRange.y);
+            float z = Random.Range(spawnConfig.zSizeRange.x, spawnConfig.zSizeRange.y);
 
             return new Vector3(x, y, z);
         }
 
         private Vector3 GetRandomRotation()
         {
-            float x = Random.Range(xRotationSpeedRange.x, xRotationSpeedRange.y);
-            float y = Random.Range(yRotationSpeedRange.x, yRotationSpeedRange.y);
-            float z = Random.Range(zRotationSpeedRange.x, zRotationSpeedRange.y);
+            float x = Random.Range(spawnConfig.xRotationSpeedRange.x, spawnConfig.xRotationSpeedRange.y);
+            float y = Random.Range(spawnConfig.yRotationSpeedRange.x, spawnConfig.yRotationSpeedRange.y);
+            float z = Random.Range(spawnConfig.zRotationSpeedRange.x, spawnConfig.zRotationSpeedRange.y);
 
             return new Vector3(x, y, z);
         }
@@ -93,10 +79,10 @@ namespace RotatingObjects
             Color targetColor = new Color(materialColor.r, materialColor.g, materialColor.b, 0f);
 
             float elapsedTime = 0f;
-            while (elapsedTime < fadeDuration)
+            while (elapsedTime < spawnConfig.fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
-                modelRenderer.material.color = Color.Lerp(materialColor, targetColor, elapsedTime / fadeDuration);
+                modelRenderer.material.color = Color.Lerp(materialColor, targetColor, elapsedTime / spawnConfig.fadeDuration);
                 yield return null;
             }
 

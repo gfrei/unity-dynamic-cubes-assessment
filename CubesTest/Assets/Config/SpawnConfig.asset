@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45850a4cae1245408259af7715ec33b, type: 3}
+  m_Name: SpawnConfig
+  m_EditorClassIdentifier: 
+  sphereRadius: 5
+  objectCount: 1500
+  objectAsChildChance: 0.5
+  spawnObject: {fileID: 5974392724435643503, guid: f20a80031a2e5094d8f5ac006e285253, type: 3}
+  lifetimeRange: {x: 3, y: 6}
+  fadeDuration: 1
+  xSizeRange: {x: 0.1, y: 2}
+  ySizeRange: {x: 0.1, y: 2}
+  zSizeRange: {x: 0.1, y: 2}
+  xRotationSpeedRange: {x: -2, y: 2}
+  yRotationSpeedRange: {x: -2, y: 2}
+  zRotationSpeedRange: {x: -2, y: 2}
+  rColorRange: {x: 0, y: 1}
+  gColorRange: {x: 0, y: 1}
+  bColorRange: {x: 0, y: 1}

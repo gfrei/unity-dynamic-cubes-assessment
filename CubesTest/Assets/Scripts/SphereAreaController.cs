@@ -6,11 +6,8 @@ namespace RotatingObjects
 {
     public class SphereAreaController : MonoBehaviour
     {
-        [SerializeField] private PoolManager poolManager;
-        [SerializeField] private float sphereRadius;
-        [SerializeField] private int objectCount;
-        [SerializeField] private float objectAsChildChance;
-        [SerializeField] private SpawnObject spawnObject;
+        [SerializeField] private SpawnObjectPoolController poolManager;
+        [SerializeField] private SpawnConfig spawnConfig;
 
         private List<SpawnObject> objectsList;
 
@@ -19,13 +16,15 @@ namespace RotatingObjects
         {
             objectsList = new List<SpawnObject>();
 
+            poolManager.Init(spawnConfig);
+
             StartCoroutine(SpawnCoroutine());
         }
 
         void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(1, 1, 1, 0.2f);
-            Gizmos.DrawSphere(Vector3.zero, sphereRadius);
+            Gizmos.DrawSphere(Vector3.zero, spawnConfig.sphereRadius);
         }
 
         private IEnumerator SpawnCoroutine()
@@ -33,7 +32,7 @@ namespace RotatingObjects
             float frametime = Time.unscaledDeltaTime;
             int i = 0;
             yield return new WaitForEndOfFrame();
-            while (i < objectCount)
+            while (i < spawnConfig.objectCount)
             {
                 SpawnNewObject();
                 i++;
@@ -52,9 +51,9 @@ namespace RotatingObjects
         private void SpawnNewObject()
         {
             SpawnObject instance = poolManager.InstantiateSpawnObject(GetRandomPosition());
-            instance.Init(this);
+            instance.Init(this, spawnConfig);
 
-            if (Random.Range(0, 1f) <= objectAsChildChance && objectsList.Count > 0)
+            if (Random.Range(0, 1f) <= spawnConfig.objectAsChildChance && objectsList.Count > 0)
             {
                 int randomIndex = Random.Range(0, objectsList.Count);
                 SpawnObject parent = objectsList[randomIndex];
@@ -75,7 +74,7 @@ namespace RotatingObjects
         {
             float polar = Random.Range(0, 360);
             float elevation = Random.Range(-180, 180);
-            float radius = Random.Range(0, sphereRadius);
+            float radius = Random.Range(0, spawnConfig.sphereRadius);
 
             return SphericalToCartesian(radius, polar, elevation);
         }

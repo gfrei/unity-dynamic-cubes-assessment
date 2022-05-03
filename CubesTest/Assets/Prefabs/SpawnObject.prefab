@@ -127,14 +127,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelRenderer: {fileID: 5974392724190627692}
   modelTransform: {fileID: 5974392724190627694}
-  lifetimeRange: {x: 2, y: 5}
-  fadeDuration: 0.5
-  xSizeRange: {x: 0.1, y: 1}
-  ySizeRange: {x: 0.1, y: 1}
-  zSizeRange: {x: 0.1, y: 1}
-  xRotationSpeedRange: {x: -2, y: 2}
-  yRotationSpeedRange: {x: -2, y: 2}
-  zRotationSpeedRange: {x: -2, y: 2}
-  rColorRange: {x: 0, y: 0.1}
-  gColorRange: {x: 0, y: 0.5}
-  bColorRange: {x: 0, y: 0.5}
